@@ -22,16 +22,22 @@ namespace CSharpWars.DataAccess
             _configurationHelper = configurationHelper;
         }
 
+        public CSharpWarsDbContext()
+        {
+            
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (String.IsNullOrEmpty(_configurationHelper.ConnectionString))
-            {
-                optionsBuilder.UseInMemoryDatabase($"{Guid.NewGuid()}");
-            }
-            else
-            {
-                optionsBuilder.UseSqlServer(_configurationHelper.ConnectionString);
-            }
+            //if (String.IsNullOrEmpty(_configurationHelper.ConnectionString))
+            //{
+            //    optionsBuilder.UseInMemoryDatabase($"{Guid.NewGuid()}");
+            //}
+            //else
+            //{
+            //    optionsBuilder.UseSqlServer(_configurationHelper.ConnectionString);
+            //}
+            optionsBuilder.UseSqlServer("Server=.\\SQLDEV;Database=CSharpWars;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
