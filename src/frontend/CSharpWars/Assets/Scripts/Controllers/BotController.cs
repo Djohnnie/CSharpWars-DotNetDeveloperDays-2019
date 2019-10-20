@@ -13,7 +13,6 @@ namespace Assets.Scripts.Controllers
 
         private String _lastAnimation;
 
-        private GameObject _errorGameObject;
         private GameObject _rangedAttackGameObject;
         private Boolean _rangeAttackExecuted;
         private Boolean _died;
@@ -21,8 +20,6 @@ namespace Assets.Scripts.Controllers
         public Single Speed = 1;
         public Single RotationSpeed = 2;
 
-        public Transform Head;
-        public GameObject ErrorPrefab;
         public GameObject RangedAttackPrefab;
 
         void Start()
@@ -31,7 +28,7 @@ namespace Assets.Scripts.Controllers
             if (_animation != null)
             {
                 _animation[Animations.Walk].speed = Speed * 2;
-                _animation[Animations.TurnRight].speed = Speed * 2;
+                _animation[Animations.Turn].speed = Speed * 2;
                 _animation[Animations.Jump].speed = Speed;
             }
             InstantRefresh();
@@ -42,25 +39,6 @@ namespace Assets.Scripts.Controllers
             if (BotIsNotAvailable())
             {
                 return;
-            }
-
-            if (RobotIsConfused())
-            {
-                RunAnimationOnce(Animations.Defend);
-                if (_errorGameObject == null)
-                {
-                    _errorGameObject = Instantiate(ErrorPrefab);
-                    _errorGameObject.transform.SetParent(Head);
-                    _errorGameObject.transform.localPosition = new Vector3(0, 0, 0);
-                    _errorGameObject.transform.position = new Vector3(_errorGameObject.transform.position.x, 2.5f, _errorGameObject.transform.position.z);
-                }
-                return;
-            }
-
-            if (_errorGameObject != null)
-            {
-                Destroy(_errorGameObject);
-                _errorGameObject = null;
             }
 
             Single step = Math.Abs(_bot.X - _bot.FromX) > 1 || Math.Abs(_bot.Y - _bot.FromY) > 1 ? 100 : Speed * Time.deltaTime;
@@ -83,7 +61,7 @@ namespace Assets.Scripts.Controllers
 
             if ((targetOrientation - newDir).magnitude > 0.01)
             {
-                RunAnimation(Animations.TurnRight);
+                RunAnimation(Animations.Turn);
                 return;
             }
 
@@ -143,6 +121,11 @@ namespace Assets.Scripts.Controllers
                 _animation.Stop();
                 _animation.Play(animationName);
                 _lastAnimation = animationName;
+            }
+
+            if (!_animation.IsPlaying(animationName))
+            {
+                _lastAnimation = null;
             }
         }
 

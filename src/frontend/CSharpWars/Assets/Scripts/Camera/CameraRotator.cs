@@ -3,11 +3,7 @@ using UnityEngine;
 
 public class CameraRotator : MonoBehaviour
 {
-    #region <| Public Properties |>
-
     public Single RotationsPerMinute = 10.0f;
-
-    #endregion
 
     void Update()
     {

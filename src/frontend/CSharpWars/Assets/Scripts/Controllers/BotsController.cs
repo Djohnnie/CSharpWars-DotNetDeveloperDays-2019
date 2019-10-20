@@ -10,7 +10,6 @@ namespace Assets.Scripts.Controllers
     public class BotsController : MonoBehaviour
     {
         private readonly Dictionary<Guid, BotController> _bots = new Dictionary<Guid, BotController>();
-        private GameObject _floor;
         private ArenaController _arenaController;
 
         public Single RefreshRate = 2;
@@ -19,7 +18,6 @@ namespace Assets.Scripts.Controllers
         void Start()
         {
             InvokeRepeating(nameof(RefreshBots), RefreshRate, RefreshRate);
-            _floor = GameObject.Find("Floor");
             _arenaController = GetComponent<ArenaController>();
         }
 
