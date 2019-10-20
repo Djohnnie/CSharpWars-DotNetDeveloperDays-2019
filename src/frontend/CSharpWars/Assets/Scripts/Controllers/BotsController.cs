@@ -15,9 +15,6 @@ namespace Assets.Scripts.Controllers
 
         public Single RefreshRate = 2;
         public GameObject BotPrefab;
-        public GameObject NameTagPrefab;
-        public GameObject HealthTagPrefab;
-        public GameObject StaminaTagPrefab;
 
         void Start()
         {
@@ -42,27 +39,6 @@ namespace Assets.Scripts.Controllers
                     botController.SetArenaController(_arenaController);
                     botController.InstantRefresh();
                     _bots.Add(bot.Id, botController);
-
-                    var nameTag = Instantiate(NameTagPrefab);
-                    nameTag.transform.SetParent(botController.Head);
-                    var nameTagController = nameTag.GetComponent<NameTagController>();
-                    nameTagController.BotGameObject = newBot;
-                    nameTagController.UpdateBot(bot);
-                    botController.SetNameTagController(nameTagController);
-
-                    var healthTag = Instantiate(HealthTagPrefab);
-                    healthTag.transform.SetParent(botController.Head);
-                    var healthTagController = healthTag.GetComponent<HealthTagController>();
-                    healthTagController.BotGameObject = newBot;
-                    healthTagController.UpdateBot(bot);
-                    botController.SetHealthTagController(healthTagController);
-
-                    var staminaTag = Instantiate(StaminaTagPrefab);
-                    staminaTag.transform.SetParent(botController.Head);
-                    var staminaTagController = staminaTag.GetComponent<StaminaTagController>();
-                    staminaTagController.BotGameObject = newBot;
-                    staminaTagController.UpdateBot(bot);
-                    botController.SetStaminaTagController(staminaTagController);
                 }
                 else
                 {

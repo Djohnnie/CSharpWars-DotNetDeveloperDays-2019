@@ -54,13 +54,15 @@ namespace CSharpWars.Logic
         {
             var dateTimeToCompare = DateTime.UtcNow.AddSeconds(-10);
 
-            var activeBots = await _botRepository.Find(x => x.CurrentHealth > 0 || x.TimeOfDeath > dateTimeToCompare, i => i.Player);
+            var activeBots = await _botRepository.Find(
+                x => x.CurrentHealth > 0 || x.TimeOfDeath > dateTimeToCompare, i => i.Player);
             return _botMapper.Map(activeBots);
         }
 
         public async Task<IList<BotDto>> GetAllLiveBots()
         {
-            var activeBots = await _botRepository.Find(x => x.CurrentHealth > 0, i => i.Player);
+            var activeBots = await _botRepository.Find(
+                x => x.CurrentHealth > 0, i => i.Player);
             return _botMapper.Map(activeBots);
         }
 

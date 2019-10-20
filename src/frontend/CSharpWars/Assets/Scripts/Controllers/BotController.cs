@@ -10,9 +10,6 @@ namespace Assets.Scripts.Controllers
         private Bot _bot;
         private Animation _animation;
         private ArenaController _arenaController;
-        private NameTagController _nameTagController;
-        private HealthTagController _healthTagController;
-        private StaminaTagController _staminaTagController;
 
         private String _lastAnimation;
 
@@ -94,9 +91,6 @@ namespace Assets.Scripts.Controllers
             {
                 _died = true;
                 RunAnimationOnce(Animations.Death);
-                _nameTagController.Destroy();
-                _healthTagController.Destroy();
-                _staminaTagController.Destroy();
                 return;
             }
 
@@ -160,32 +154,8 @@ namespace Assets.Scripts.Controllers
         public void UpdateBot(Bot bot)
         {
             SetBot(bot);
-            if (_healthTagController != null)
-            {
-                _healthTagController.UpdateBot(bot);
-            }
-
-            if (_staminaTagController != null)
-            {
-                _staminaTagController.UpdateBot(bot);
-            }
 
             _rangeAttackExecuted = false;
-        }
-
-        public void SetNameTagController(NameTagController nameTagController)
-        {
-            _nameTagController = nameTagController;
-        }
-
-        public void SetHealthTagController(HealthTagController healthTagController)
-        {
-            _healthTagController = healthTagController;
-        }
-
-        public void SetStaminaTagController(StaminaTagController staminaTagController)
-        {
-            _staminaTagController = staminaTagController;
         }
 
         public void SetArenaController(ArenaController arenaController)
@@ -247,21 +217,6 @@ namespace Assets.Scripts.Controllers
 
         public void Destroy()
         {
-            if (_nameTagController != null)
-            {
-                _nameTagController.Destroy();
-            }
-
-            if (_healthTagController != null)
-            {
-                _healthTagController.Destroy();
-            }
-
-            if (_staminaTagController != null)
-            {
-                _staminaTagController.Destroy();
-            }
-
             Destroy(gameObject);
             Destroy(this);
         }
