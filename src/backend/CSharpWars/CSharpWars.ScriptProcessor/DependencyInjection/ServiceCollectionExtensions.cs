@@ -14,7 +14,7 @@ namespace CSharpWars.ScriptProcessor.DependencyInjection
             serviceCollection.ConfigureLogic();
             serviceCollection.AddScoped<IMiddleware, Middleware.Middleware>();
             serviceCollection.AddScoped<IPreprocessor, Preprocessor>();
-            serviceCollection.AddScoped<IProcessor, Processor>();
+            serviceCollection.AddSingleton<IProcessor, Processor>();
             serviceCollection.AddScoped<IPostprocessor, Postprocessor>();
         }
     }

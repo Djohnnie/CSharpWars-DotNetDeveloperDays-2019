@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using CSharpWars.Common.DependencyInjection;
+using CSharpWars.Common.Extensions;
 using CSharpWars.DtoModel;
 using CSharpWars.Logic.DependencyInjection;
 using CSharpWars.Logic.Interfaces;
@@ -37,7 +38,7 @@ namespace CSharpWars.Console.Test
                 Name = $"{Guid.NewGuid()}",
                 MaximumHealth = 10000,
                 MaximumStamina = 10000,
-                Script = BotScripts.HuntDown
+                Script = BotScripts.HuntDown.Base64Encode()
             };
 
             var botLogic = provider.GetService<IBotLogic>();
