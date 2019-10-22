@@ -9,6 +9,7 @@ using CSharpWars.Enums;
 using CSharpWars.Logic.Interfaces;
 using CSharpWars.Scripting;
 using CSharpWars.Scripting.Model;
+using CSharpWars.ScriptProcessor.Helpers;
 using CSharpWars.ScriptProcessor.Middleware.Interfaces;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;

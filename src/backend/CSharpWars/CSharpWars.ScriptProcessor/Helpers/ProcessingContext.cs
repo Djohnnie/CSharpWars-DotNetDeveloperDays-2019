@@ -5,7 +5,7 @@ using System.Linq;
 using CSharpWars.DtoModel;
 using CSharpWars.Scripting.Model;
 
-namespace CSharpWars.ScriptProcessor.Middleware
+namespace CSharpWars.ScriptProcessor.Helpers
 {
     public class ProcessingContext
     {

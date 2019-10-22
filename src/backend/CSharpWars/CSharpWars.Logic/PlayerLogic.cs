@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CSharpWars.DataAccess.Repositories.Interfaces;
 using CSharpWars.DtoModel;
@@ -23,6 +24,18 @@ namespace CSharpWars.Logic
         {
             var players = await _playerRepository.GetAll();
             return _playerMapper.Map(players);
+        }
+
+        public async Task<PlayerDto> CreatePlayer(String playerName)
+        {
+            var player = new Player
+            {
+                Name = playerName,
+                LastDeployment = DateTime.MinValue
+            };
+
+            var createdPlayer = await _playerRepository.Create(player);
+            return _playerMapper.Map(createdPlayer);
         }
     }
 }
