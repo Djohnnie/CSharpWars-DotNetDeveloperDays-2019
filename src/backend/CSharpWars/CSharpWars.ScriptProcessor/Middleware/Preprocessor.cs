@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CSharpWars.Scripting.Model;
 using CSharpWars.ScriptProcessor.Helpers;
 using CSharpWars.ScriptProcessor.Middleware.Interfaces;
@@ -9,13 +10,7 @@ namespace CSharpWars.ScriptProcessor.Middleware
     {
         public Task Go(ProcessingContext context)
         {
-            foreach (var bot in context.Bots)
-            {
-                var botProperties = BotProperties.Build(bot, context.Arena, context.Bots);
-                context.AddBotProperties(bot.Id, botProperties);
-            }
-
-            return Task.CompletedTask;
+            throw new NotImplementedException();
         }
     }
 }

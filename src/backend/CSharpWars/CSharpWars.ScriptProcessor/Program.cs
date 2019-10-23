@@ -29,38 +29,7 @@ namespace CSharpWars.ScriptProcessor
 
         static async Task MainAsync()
         {
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.ConfigurationHelper(c =>
-            {
-                c.ConnectionString = GetEnvironmentVariable("CONNECTION_STRING");
-                c.ArenaSize = ToInt32(GetEnvironmentVariable("ARENA_SIZE"));
-            });
-            serviceCollection.ConfigureScriptProcessor();
-            var serviceProvider = serviceCollection.BuildServiceProvider();
-
-            while (true)
-            {
-                using (var scopedServiceProvider = serviceProvider.CreateScope())
-                {
-                    var start = DateTime.UtcNow;
-
-                    try
-                    {
-                        var sw = Stopwatch.StartNew();
-                        var middleware = scopedServiceProvider.ServiceProvider.GetService<IMiddleware>();
-                        await middleware.Process();
-                        WriteLine($"[ CSharpWars Script Processor - PROCESSING {sw.ElapsedMilliseconds}ms! ]");
-                    }
-                    catch (Exception ex)
-                    {
-                        WriteLine($"[ CSharpWars Script Processor - EXCEPTION - '{ex.Message}'! ]");
-                    }
-
-                    var timeTaken = DateTime.UtcNow - start;
-                    var delay = (Int32)(timeTaken.TotalMilliseconds < DELAY_MS ? DELAY_MS - timeTaken.TotalMilliseconds : 0);
-                    await Task.Delay(delay);
-                }
-            }
+            throw new NotImplementedException();
         }
     }
 }
